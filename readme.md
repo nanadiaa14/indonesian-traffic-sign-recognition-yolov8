@@ -153,7 +153,7 @@ print(f"mAP@75    : {metrics.box.map75:.4f}")
 
 ## Referensi Ilmiah
 
-1. Arief, R. W., Nurtanio, I., & Samman, F. A. (2021). Traffic Signs Detection and Recognition System Using the YOLOv4 Algorithm. *2021 International Conference on Artificial Intelligence and Mechatronics Systems (AIMS)*, 1–6. [https://doi.org/10.1109/AIMS51415.2021.9466006](https://doi.org/10.1109/AIMS51415.2021.9466006)
+1. Arief, R. W., Nurtanio, I., & Samman, F. A. (2021). Traffic Signs Detection and Recognition System Using the YOLOv4 Algorithm. *2021 International Conference on Artificial Intelligence and Mechatronics Systems (AIMS)*, 1–6. [https://doi.org/10.1109/AIMS52415.2021.9466006](https://doi.org/10.1109/AIMS52415.2021.9466006)
 2. Flores-Calero, M., et al. (2024). Traffic Sign Detection and Recognition Using YOLO Object Detection Algorithm: A Systematic Review. *Mathematics*, 12(2), 297. [https://doi.org/10.3390/math12020297](https://doi.org/10.3390/math12020297)
 3. Mulyanto, A., et al. (2020). Indonesian Traffic Sign Recognition for Advanced Driver Assistant (ADAS) Using YOLOv4. *2020 3rd International Seminar on Research of Information Technology and Intelligent Systems (ISRITI)*, 520–524. [https://doi.org/10.1109/ISRITI51436.2020.9315368](https://doi.org/10.1109/ISRITI51436.2020.9315368)
 4. Wang, G., et al. (2025). Traffic sign detection method based on improved YOLOv8. *Scientific Reports*, 15, 19385. [https://doi.org/10.1038/s41598-025-03792-0](https://doi.org/10.1038/s41598-025-03792-0)
