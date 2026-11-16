@@ -83,6 +83,20 @@ Eksperimen pelatihan dijalankan di **Kaggle Notebook** menggunakan model *pre-tr
 
 > **Analisis Hasil**: Empat dari lima kelas rambu mencapai **Recall 100%** dan **mAP@50 sebesar 99,50%** pada *Test Set*, sementara kelas `dilarang-berhenti` mencapai **Precision 100%** dan **mAP@50 sebesar 99,30%**. Waktu pemrosesan rata-rata pada *Test Set* hanya memerlukan **9,6 ms per frame** (`0,8 ms` *preprocess* + `7,7 ms` *inference* + `1,1 ms` *postprocess*), yang setara dengan **~104,2 FPS**—jauh melampaui standar deteksi *real-time* (30 FPS).
 
+## Visualisasi Hasil
+
+![Kurva training](results/results.png)
+
+![Confusion matrix (validation set)](results/confusion_matrix.png)
+
+*Confusion matrix dihitung pada validation set (133 citra) dengan threshold confidence rendah bawaan Ultralytics, sehingga kolom background memuat prediksi berkonfidensi rendah.*
+
+![Contoh prediksi pada validation set](results/val_batch1_pred.jpg)
+
+## Keterbatasan
+
+* **Belum diuji pada video.** Modul ADAS (tracking, debounce, TTS) masih rencana dan belum diimplementasikan.
+
 ## Rancangan Pengembangan Sistem Navigasi Jalan Tol (ADAS Roadmap)
 
 Sebagai kelanjutan dari model deteksi dasar ini, rancangan arsitektur sistem navigasi kendaraan otonom untuk skenario jalan tol mencakup integrasi modul-modul berikut ([Zhao, Li & Gong, 2025](https://doi.org/10.3390/info16090798); [Wang et al., 2025](https://doi.org/10.1038/s41598-025-03792-0)):
@@ -95,14 +109,15 @@ Sebagai kelanjutan dari model deteksi dasar ini, rancangan arsitektur sistem nav
 
 ```text
 indonesian-traffic-sign-recognition-yolov8/
-├── assets/
-│   ├── val_batch0_pred.jpg          # Contoh hasil deteksi bounding box pada rambu jalan
+├── results/
+│   ├── val_batch1_pred.jpg          # Contoh hasil deteksi bounding box pada rambu jalan
+│   ├── val_batch2_pred.jpg          # Contoh hasil deteksi bounding box pada rambu jalan
 │   ├── confusion_matrix.png         # Matriks konfusi hasil evaluasi model
-│   └── training_curves.png          # Grafik kurva Box/Class/DFL Loss dan mAP selama 100 epoch
+│   └── results.png          # Grafik kurva Box/Class/DFL Loss dan mAP selama 100 epoch
 ├── notebooks/
 │   └── train-stc.ipynb              # Notebook Kaggle lengkap (Training, Test Evaluation & Visualization)
 ├── weights/
-│   └── best.pt                      # Bobot terbaik YOLOv8n (6,5 MB)
+│   └── best.zip                      # Bobot terbaik YOLOv8n (6,5 MB)
 ├── requirements.txt                 # Daftar dependensi pustaka Python
 └── README.md                        # Dokumentasi utama proyek
 ```
@@ -141,7 +156,7 @@ print(f"mAP@75    : {metrics.box.map75:.4f}")
 
 ## Referensi Ilmiah
 
-1. Arief, R. W., Nurtanio, I., & Samman, F. A. (2021). Traffic Signs Detection and Recognition System Using the YOLOv4 Algorithm. *2021 International Conference on Artificial Intelligence and Mechatronics Systems (AIMS)*, 1–6. [https://doi.org/10.1109/AIMS51415.2021.9466006](https://www.google.com/search?q=https://doi.org/10.1109/AIMS51415.2021.9466006)
+1. Arief, R. W., Nurtanio, I., & Samman, F. A. (2021). Traffic Signs Detection and Recognition System Using the YOLOv4 Algorithm. *2021 International Conference on Artificial Intelligence and Mechatronics Systems (AIMS)*, 1–6. [https://doi.org/10.1109/AIMS51415.2021.9466006](https://doi.org/10.1109/AIMS51415.2021.9466006)
 2. Flores-Calero, M., et al. (2024). Traffic Sign Detection and Recognition Using YOLO Object Detection Algorithm: A Systematic Review. *Mathematics*, 12(2), 297. [https://doi.org/10.3390/math12020297](https://doi.org/10.3390/math12020297)
 3. Mulyanto, A., et al. (2020). Indonesian Traffic Sign Recognition for Advanced Driver Assistant (ADAS) Using YOLOv4. *2020 3rd International Seminar on Research of Information Technology and Intelligent Systems (ISRITI)*, 520–524. [https://doi.org/10.1109/ISRITI51436.2020.9315368](https://doi.org/10.1109/ISRITI51436.2020.9315368)
 4. Wang, G., et al. (2025). Traffic sign detection method based on improved YOLOv8. *Scientific Reports*, 15, 19385. [https://doi.org/10.1038/s41598-025-03792-0](https://doi.org/10.1038/s41598-025-03792-0)
