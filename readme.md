@@ -4,11 +4,6 @@ Proyek **Computer Vision & Deep Learning** ini mengembangkan sistem deteksi dan 
 
 Model dilatih selama **100 epoch** pada **1.589 citra rambu jalan Indonesia** menggunakan lingkungan **Kaggle Notebook (GPU NVIDIA Tesla T4)**, serta menghasilkan performa sangat tinggi pada *Test Set* dengan **Precision mencapai 99,30%**, **Recall mencapai 98,80%**, **mAP@50 mencapai 99,46% (99,50%)**, **mAP@75 mencapai 76,95%**, **mAP@50-95 mencapai 73,27%**, dan waktu inferensi rata-rata **7,7 ms per citra** (total pemrosesan **9,6 ms/frame** atau **~104,2 FPS**).
 
-## Tautan Proyek & Artefak Eksperimen
-
-* **Kaggle Dataset**: `nanadiaa14/stc-project` (`/kaggle/input/datasets/nanadiaa14/stc-project`)
-* **Sumber Kurasi Awal Dataset (Roboflow)**: [Indonesian Traffic Sign Dataset (`tes-f4pkg/stc-project-jmlkj` v2)](https://universe.roboflow.com/tes-f4pkg/stc-project-jmlkj)
-
 ## Latar Belakang Masalah & Motivasi
 
 Tingginya angka kecelakaan lalu lintas di jalan raya dan ruas jalan tol sering kali dipicu oleh faktor kelalaian pengemudi dalam memperhatikan rambu peringatan, larangan, maupun petunjuk jalur pada kecepatan tinggi ([Mulyanto et al., 2020](https://doi.org/10.1109/ISRITI51436.2020.9315368); [Arief, Nurtanio \& Samman, 2021](https://www.google.com/search?q=https://doi.org/10.1109/AIMS51415.2021.9466006)). Dalam ekosistem transportasi cerdas (*smart mobility*) dan kendaraan otonom ([ITB Instrumentation and Control Research Group](https://itb.ac.id/news/itb-instrumentation-and-control-research-group-to-develop-autonomous-vehicle-in-indonesia/57932)), sistem **Traffic Sign Recognition (TSR)** berperan krusial untuk:
@@ -17,16 +12,18 @@ Tingginya angka kecelakaan lalu lintas di jalan raya dan ruas jalan tol sering k
 2. **Mencapai keseimbangan optimal antara akurasi deteksi dan efisiensi komputasi (FPS)** agar dapat dijalankan pada perangkat komputasi tepi (*edge device*) di dalam kendaraan ([Flores-Calero et al., 2024](https://doi.org/10.3390/math12020297); [Xing, Sun & Yang, 2025](https://doi.org/10.3390/wevj16080478)).
 3. **Memberikan peringatan dini berbasis suara (*Text-to-Speech Audio Feedback*)** dengan mekanisme *debounce/cooldown* dan *object tracking* agar pengemudi memperoleh informasi tepat waktu tanpa gangguan berulang.
 
-## Spesifikasi Dataset & Pembagian Kelas
+## Dataset
 
-Dataset disusun dari gabungan citra rambu lalu lintas Indonesia yang telah difilter, dianotasi dalam format *bounding box* standar YOLOv8 (`640 × 640` piksel), diunggah ke **Kaggle Datasets (`nanadiaa14/stc-project`)**, dan dibagi ke dalam tiga *split* evaluasi:
+Dataset disusun sendiri dari beberapa dataset rambu lalu lintas Indonesia yang tersedia di Roboflow Universe, lalu dibagi ulang menjadi train/validation/test. 
+Daftar sumber aslinya tidak tercatat, sehingga atribusi per sumber belum dapat dicantumkan.
+Dataset hasil gabungan: [nanadiaa14/stc-project](https://www.kaggle.com/datasets/nanadiaa14/stc-project).
 
-| Subset Data | Jumlah Citra | Proporsi | Keterangan |
-| :--- | ---: | ---: | :--- |
-| **Training Set** | 1.388 | 87,35% | Dilengkapi pipeline augmentasi (*Mosaic*, *Blur*, *MedianBlur*, *ToGray*, *CLAHE*, *Horizontal Flip*) |
-| **Validation Set** | 133 | 8,37% | Digunakan untuk pemantauan *loss* dan pemilihan bobot terbaik (`best.pt`) di setiap *epoch* |
-| **Test Set** | 68 | 4,28% | Data uji independen untuk evaluasi akhir performa generalisasi model |
-| **Total** | **1.589** | **100,00%** | Mencakup **5 kelas rambu lalu lintas Indonesia** |
+| Subset | Jumlah Citra |
+| :--- | ---: |
+| Train | 1.388 |
+| Validation | 133 |
+| Test | 68 |
+| **Total** | **1.589** |
 
 ### Daftar 5 Kelas Rambu yang Dideteksi (`nc = 5`)
 
